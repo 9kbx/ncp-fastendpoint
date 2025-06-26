@@ -2,7 +2,7 @@
 
 ## 简介
 
-这是 [Netcorepal](https://github.com/netcorepal/netcorepal-cloud-framework) 与 [FastEndpoints](https://github.com/FastEndpoints/FastEndpoints) 两个框架结合的示例代码，主要使用 `FastEndpoints` 的 [REPR](https://deviq.com/design-patterns/repr-design-pattern) 设计模式替代原先的Controller，以及fastendpints的身份认证/权限验证等相关功能
+这是 [Netcorepal](https://github.com/netcorepal/netcorepal-cloud-framework) 与 [FastEndpoints](https://github.com/FastEndpoints/FastEndpoints) 两个框架搭配使用的示例代码，主要使用 `FastEndpoints` 的 [REPR](https://deviq.com/design-patterns/repr-design-pattern) 设计模式替代原先的Controller，以及fastendpints的身份认证/权限验证等相关功能
 
 ## 环境准备
 
