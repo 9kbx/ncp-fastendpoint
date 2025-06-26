@@ -5,7 +5,7 @@ namespace My.FastNCP.Web.Endpoints.Users;
 
 public record CreateUserRequest(string Username, string Password);
 
-public class CreateUserEndpoint : Endpoint<CreateUserRequest, ResponseData>
+public class CreateUserEndpoint : Endpoint<CreateUserRequest, ResponseData<long>>
 {
     public override void Configure()
     {
@@ -15,6 +15,7 @@ public class CreateUserEndpoint : Endpoint<CreateUserRequest, ResponseData>
 
     public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
     {
-        await SendOkAsync(true.AsResponseData(), ct);
+        var createdId = Random.Shared.NextInt64(10000000, 99999999);
+        await SendOkAsync(createdId.AsResponseData(), ct);
     }
 }

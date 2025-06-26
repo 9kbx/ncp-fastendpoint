@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Prometheus;
 using System.Reflection;
+using System.Security.Claims;
 using System.Text.Json;
 using FastEndpoints;
 using FastEndpoints.Security;
@@ -22,6 +23,7 @@ using Microsoft.Net.Http.Headers;
 using My.FastNCP.Web.AspNetCore;
 using My.FastNCP.Web.AspNetCore.ApiKey;
 using My.FastNCP.Web.AspNetCore.Middlewares;
+using My.FastNCP.Web.AspNetCore.Permission;
 using My.FastNCP.Web.Endpoints.Users;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -75,6 +77,8 @@ try
 
 
     builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+    builder.Services.AddTransient<UserPermissionService>(); // 获取用户权限
+    builder.Services.AddTransient<IClaimsTransformation, UserPermissionHydrator>(); // 用户权限验证
 
     builder.Services
         // 添加Jwt身份认证方案
@@ -258,6 +262,8 @@ try
         // 权限代码默认存储在ClaimType为permission的声明中
         // 假设要自定义可修改这里
         // o.Security.PermissionsClaimType = "从指定ClaimType验证权限";
+        // 其他的依此类推
+        // o.Security.RoleClaimType = ClaimTypes.Role; 
     });
 
     #region SignalR

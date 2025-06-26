@@ -100,14 +100,14 @@ public class MyTokenService : RefreshTokenService<TokenRequest, TokenResponse>
             Username = "admin",
         };
 
-        // privileges.Roles.AddRange(new[] { "Admin", "Manager" });
-        // privileges.Permissions.AddRange("pms1", "pms2", "user.create");
+        privileges.Roles.AddRange(["Admin", "Manager"]);
+        // privileges.Permissions.AddRange("pms1", "pms2", "user.create"); // 在此添加当前用户拥有的权限列表，如果系统权限太细太多则建议动态处理，详情查看 UserPermissionHydrator.cs
         privileges.Claims.AddRange(
         [
             new Claim("ClientID", "Default"),
             new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
             new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Role, "admin"),
+            // new Claim(ClaimTypes.Role, "admin"),
         ]);
 
         // specify the user privileges to be embedded in the jwt when a refresh request is
