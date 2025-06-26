@@ -1,0 +1,9 @@
+﻿global using NetCorePal.Extensions.AspNetCore;
+global using NetCorePal.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection;
+global using My.FastNCP.Domain;
+global using My.FastNCP.Infrastructure;
+global using FluentValidation;
+global using NetCorePal.Extensions.Primitives;
+global using MediatR;
+global using NetCorePal.Extensions.Domain;
