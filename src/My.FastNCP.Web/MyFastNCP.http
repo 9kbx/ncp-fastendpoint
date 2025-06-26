@@ -1,0 +1,44 @@
+@HostAddress = https://localhost:7058
+
+# 使用ApiKey访问endpoint
+GET {{HostAddress}}/api/user/profile
+Accept: application/json
+x-api-key: 21c04ef0aae4270662719be04870b868
+
+###
+
+# 用户登录
+# @name: LoginRequest
+POST {{HostAddress}}/api/user/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123"
+}
+
+###
+
+#@AccessToken = {{LoginRequest.response.body.$.accessToken}}
+@AccessToken = eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJteS1maXJzdC1uY3AiLCJpc3MiOiJteS1maXJzdC1uY3AiLCJleHAiOjE3NTA5MzAxNDAsImlhdCI6MTc1MDkyOTg0MCwiQ2xpZW50SUQiOiJEZWZhdWx0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIxMjMiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhZG1pbiIsIm5iZiI6MTc1MDkyOTg0MH0.LMzT7hhZOQjeVUoP475FcIHGpRF_NCEsR98BVp38qjM
+
+###
+
+# 刷新token
+POST {{HostAddress}}/api/user/refresh-token
+Content-Type: application/json
+
+{
+  "userId": "123",
+  "refreshToken": "123123123131"
+}
+
+###
+
+# 使用Jwt访问endpoint
+GET {{HostAddress}}/api/user/profile
+Authorization: Bearer {{AccessToken}}
+Accept: application/json
+
+###
+

@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using Prometheus;
 using System.Reflection;
 using System.Text.Json;
+using FastEndpoints;
+using FastEndpoints.Security;
 using Microsoft.AspNetCore.DataProtection;
 using StackExchange.Redis;
 using FluentValidation.AspNetCore;
@@ -13,10 +15,17 @@ using My.FastNCP.Web.Extensions;
 using Serilog;
 using Hangfire;
 using Hangfire.Redis.StackExchange;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.Net.Http.Headers;
+using My.FastNCP.Web.AspNetCore;
+using My.FastNCP.Web.AspNetCore.ApiKey;
+using My.FastNCP.Web.AspNetCore.Middlewares;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Refit;
+using SystemClock = NetCorePal.Extensions.Primitives.SystemClock;
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.WithClientIp()
@@ -54,14 +63,44 @@ try
     builder.Services.AddDataProtection()
         .PersistKeysToStackExchangeRedis(redis, "DataProtection-Keys");
 
-    builder.Services.AddAuthentication().AddJwtBearer(options =>
-    {
-        options.RequireHttpsMetadata = false;
-        options.TokenValidationParameters.ValidAudience = "netcorepal";
-        options.TokenValidationParameters.ValidateAudience = true;
-        options.TokenValidationParameters.ValidIssuer = "netcorepal";
-        options.TokenValidationParameters.ValidateIssuer = true;
-    });
+    // builder.Services.AddAuthentication().AddJwtBearer(options =>
+    // {
+    //     options.RequireHttpsMetadata = false;
+    //     options.TokenValidationParameters.ValidAudience = "netcorepal";
+    //     options.TokenValidationParameters.ValidateAudience = true;
+    //     options.TokenValidationParameters.ValidIssuer = "netcorepal";
+    //     options.TokenValidationParameters.ValidateIssuer = true;
+    // });
+
+
+    builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+
+    builder.Services
+        // 添加Jwt身份认证方案
+        .AddAuthenticationJwtBearer(o => o.SigningKey = builder.Configuration["Auth:Jwt:TokenSigningKey"])
+        .AddAuthentication(o =>
+        {
+            o.DefaultAuthenticateScheme = "Jwt_Or_ApiKey";
+            o.DefaultChallengeScheme = "Jwt_Or_ApiKey";
+        })
+        // 添加 ApiKey 身份认证方案
+        .AddScheme<AuthenticationSchemeOptions, ApikeyAuth>(ApikeyAuth.SchemeName, null)
+        // 综合认证方案（使用jwt或apikey任意一个方案请求endpoint）
+        // https://fast-endpoints.com/docs/security#combined-authentication-scheme
+        .AddPolicyScheme("Jwt_Or_ApiKey", "Jwt_Or_ApiKey", o =>
+        {
+            o.ForwardDefaultSelector = ctx =>
+            {
+                if (ctx.Request.Headers.TryGetValue(HeaderNames.Authorization, out var authHeader) &&
+                    authHeader.FirstOrDefault()?.StartsWith("Bearer ") is true)
+                {
+                    return JwtBearerDefaults.AuthenticationScheme;
+                }
+
+                return ApikeyAuth.SchemeName;
+            };
+        });
+
     builder.Services.AddNetCorePalJwt().AddRedisStore();
 
     #endregion
@@ -77,6 +116,7 @@ try
 
     #region FastEndpoints
 
+    builder.Services.AddFastEndpoints();
     builder.Services.Configure<JsonOptions>(o =>
         o.SerializerOptions.AddNetCorePalJsonConverters());
 
@@ -205,9 +245,18 @@ try
     app.UseStaticFiles();
     app.UseHttpsRedirection();
     app.UseRouting();
+    app.UseAuthentication();
     app.UseAuthorization();
+    app.UseMiddleware<CurrentUserMiddleware>(); // 使用自定义中间件来填充 ICurrentUser
+
 
     app.MapControllers();
+    app.UseFastEndpoints(o =>
+    {
+        // 权限代码默认存储在ClaimType为permission的声明中
+        // 假设要自定义可修改这里
+        // o.Security.PermissionsClaimType = "从指定ClaimType验证权限";
+    });
 
     #region SignalR
 

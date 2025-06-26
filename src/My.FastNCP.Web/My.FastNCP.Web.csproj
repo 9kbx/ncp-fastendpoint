@@ -9,6 +9,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="6.2.0" />
+    <PackageReference Include="FastEndpoints.Security" Version="6.2.0" />
     <PackageReference Include="AspNet.Security.OAuth.Feishu" Version="9.0.0" />
     <PackageReference Include="AspNet.Security.OAuth.Weixin" Version="9.0.0" />
     <PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.3.2" />
