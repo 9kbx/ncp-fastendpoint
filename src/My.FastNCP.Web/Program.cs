@@ -22,6 +22,7 @@ using Microsoft.Net.Http.Headers;
 using My.FastNCP.Web.AspNetCore;
 using My.FastNCP.Web.AspNetCore.ApiKey;
 using My.FastNCP.Web.AspNetCore.Middlewares;
+using My.FastNCP.Web.Endpoints.Users;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Refit;
@@ -245,9 +246,10 @@ try
     app.UseStaticFiles();
     app.UseHttpsRedirection();
     app.UseRouting();
+    app.UseJwtRevocation<MyBlacklistChecker>(); // 自定义jwtToken有效性检查中间件
     app.UseAuthentication();
     app.UseAuthorization();
-    app.UseMiddleware<CurrentUserMiddleware>(); // 使用自定义中间件来填充 ICurrentUser
+    app.UseMiddleware<CurrentUserMiddleware>(); // 在当前请求范围补充ICurrentUser实例
 
 
     app.MapControllers();
