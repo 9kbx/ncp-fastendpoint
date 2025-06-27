@@ -4,6 +4,11 @@ using FastEndpoints.Security;
 
 namespace My.FastNCP.Web.Endpoints.Users;
 
+/// <summary>
+/// 登录请求体
+/// </summary>
+/// <param name="Username">登录账号</param>
+/// <param name="Password">登录密码</param>
 public record LoginRequest(string Username, string Password);
 
 public class LoginEndpoint : Endpoint<LoginRequest, TokenResponse>
@@ -11,6 +16,7 @@ public class LoginEndpoint : Endpoint<LoginRequest, TokenResponse>
     public override void Configure()
     {
         Post("/api/user/login");
+        Description(x => x.WithTags("User"));
         AllowAnonymous();
     }
 
@@ -37,6 +43,15 @@ public class LoginEndpoint : Endpoint<LoginRequest, TokenResponse>
     }
 }
 
+sealed class LoginSummary : Summary<LoginEndpoint, LoginRequest>
+{
+    public LoginSummary()
+    {
+        Summary = "用户登录";
+        Description = "Description text goes here...";
+    }
+}
+
 // accessToken管理
 // https://fast-endpoints.com/docs/security#jwt-refresh-tokens
 public class MyTokenService : RefreshTokenService<TokenRequest, TokenResponse>
@@ -53,7 +68,7 @@ public class MyTokenService : RefreshTokenService<TokenRequest, TokenResponse>
 
             // token刷新路由（提交 TokenRequest 对象到此路由）
             o.Endpoint("/api/user/refresh-token",
-                ep => { ep.Summary(s => s.Summary = "this is the refresh token endpoint"); });
+                ep => { ep.Summary(s => s.Summary = "刷新令牌"); });
         });
     }
 

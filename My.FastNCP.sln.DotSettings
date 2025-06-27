@@ -1,15 +1,15 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=29F1FF6B85CF6B43810FB210D8429C05/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=29F1FF6B85CF6B43810FB210D8429C05/EntryName/@EntryValue">FE Endpoint Class</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=2CAB0A567F30704CA99AA3EC249E3153/Position/@EntryValue">1</s:Int64>
+	
+	
+	
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=2CBD6971A7955044AD2624B84FB49E38/@KeyIndexDefined">False</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=37AB964D6E4D424BBE2530F92DA37EEB/Position/@EntryValue">3</s:Int64>
+	
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=40C163D436D8ED48A6D01A0AFEFC5556/@KeyIndexDefined">False</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=567DCF4B487C244A9F6BB46E4E9F3B84/@KeyIndexDefined">False</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=6FAA6736247D464489DF536819A6D103/Position/@EntryValue">2</s:Int64>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=7B10AC30B0320A4F95A3763001E1DBF6/Position/@EntryValue">5</s:Int64>
+	
+	
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=7F2A1BE8D0078241A9AE7802038BAD3C/@KeyIndexDefined">False</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=9BB83ED0FF792E47BAAB217C25589C77/Position/@EntryValue">4</s:Int64>
+	
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/QuickList/=F0CA621CDF5AB24282D8CDC11C520997/Entry/=C4795E57DDEC1C4F97BBC8C7173EBBCA/@KeyIndexDefined">False</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=05F0D1722D0C7745B8D9365C6C73D7A9/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=05F0D1722D0C7745B8D9365C6C73D7A9/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
@@ -240,65 +240,24 @@ public class $name$Fixture : TestFixture&lt;Program&gt;
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20C68DE5FC26A941B3663E08B95DABC0/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20C68DE5FC26A941B3663E08B95DABC0/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20C68DE5FC26A941B3663E08B95DABC0/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/@KeyIndexDefined">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/CustomProperties/=FileName/@EntryIndexedValue">Endpoint</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/CustomProperties/=ValidateFileName/@EntryIndexedValue">False</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Description/@EntryValue">FastEndpoints Feature File Set</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Text/@EntryValue">namespace $name_space$;
-
-sealed class Request
-{
-
-}
-
-sealed class Validator : Validator&lt;Request&gt;
-{
-    public Validator()
-    {
-        
-    }
-}
-
-sealed class Response
-{
-    public string Message =&gt; "This endpoint hasn't been implemented yet!";
-}
-
-sealed class Endpoint : Endpoint&lt;Request, Response, Mapper&gt;
-{
-    public override void Configure()
-    {
-        Post("$route$");
-    }
-
-    public override async Task HandleAsync(Request r, CancellationToken c)
-    {
-        await SendAsync(new Response());$END$
-    }
-}
-
-sealed class Mapper : Mapper&lt;Request, Response, object&gt;
-{
-    
-}
-
-static class Data
-{
-    
-}</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/UITag/@EntryValue">Class/Interface</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Field/=name_005Fspace/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Field/=name_005Fspace/Expression/@EntryValue">fileDefaultNamespace()</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Field/=name_005Fspace/Order/@EntryValue">1</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Field/=route/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Field/=route/Expression/@EntryValue">constant("route-pattern")</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Field/=route/Order/@EntryValue">0</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=29F1FF6B85CF6B43810FB210D8429C05/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=32B4A14C9D8E8E41B84D726F3BF3B83B/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=32B4A14C9D8E8E41B84D726F3BF3B83B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=32B4A14C9D8E8E41B84D726F3BF3B83B/Description/@EntryValue">event handler</s:String>

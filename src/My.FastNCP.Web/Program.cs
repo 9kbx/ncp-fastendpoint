@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Prometheus;
 using System.Reflection;
-using System.Security.Claims;
 using System.Text.Json;
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using FastEndpoints.Security;
 using Microsoft.AspNetCore.DataProtection;
 using StackExchange.Redis;
@@ -12,7 +12,6 @@ using FluentValidation.AspNetCore;
 using My.FastNCP.Web.Application.Queries;
 using My.FastNCP.Web.Application.IntegrationEventHandlers;
 using My.FastNCP.Web.Clients;
-using My.FastNCP.Web.Extensions;
 using Serilog;
 using Hangfire;
 using Hangfire.Redis.StackExchange;
@@ -20,14 +19,17 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Net.Http.Headers;
+using My.FastNCP.Web;
 using My.FastNCP.Web.AspNetCore;
 using My.FastNCP.Web.AspNetCore.ApiKey;
 using My.FastNCP.Web.AspNetCore.Middlewares;
 using My.FastNCP.Web.AspNetCore.Permission;
 using My.FastNCP.Web.Endpoints.Users;
+using My.FastNCP.Web.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Refit;
+using Scalar.AspNetCore;
 using SystemClock = NetCorePal.Extensions.Primitives.SystemClock;
 
 Log.Logger = new LoggerConfiguration()
@@ -121,7 +123,18 @@ try
 
     #region FastEndpoints
 
-    builder.Services.AddFastEndpoints();
+    builder.Services
+        .AddFastEndpoints(o => { o.SourceGeneratorDiscoveredTypes = DiscoveredTypes.All; })
+        .SwaggerDocument(o =>
+        {
+            o.EnableJWTBearerAuth = false; // 禁用SwaggerUI需要登陆才能访问
+            o.TagDescriptions = t =>
+            {
+                t["User"] = "用户接口";
+                t["Auth"] = "身份认证接口";
+                t["Notification"] = "消息通知接口";
+            };
+        });
     builder.Services.Configure<JsonOptions>(o =>
         o.SerializerOptions.AddNetCorePalJsonConverters());
 
@@ -241,12 +254,6 @@ try
     }
 
     app.UseKnownExceptionHandler();
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
 
     app.UseStaticFiles();
     app.UseHttpsRedirection();
@@ -258,14 +265,17 @@ try
 
 
     app.MapControllers();
-    app.UseFastEndpoints(o =>
+    app.UseFastEndpoints(c =>
     {
         // 权限代码默认存储在ClaimType为permission的声明中
         // 假设要自定义可修改这里
-        // o.Security.PermissionsClaimType = "从指定ClaimType验证权限";
+        // c.Security.PermissionsClaimType = "从指定ClaimType验证权限";
         // 其他的依此类推
-        // o.Security.RoleClaimType = ClaimTypes.Role; 
+        // c.Security.RoleClaimType = ClaimTypes.Role; 
+
+        c.Binding.ReflectionCache.AddFromMyFastNCPWeb();
     });
+
 
     #region SignalR
 
@@ -277,6 +287,16 @@ try
     app.MapHealthChecks("/health");
     app.MapMetrics("/metrics"); // 通过   /metrics  访问指标
     app.UseHangfireDashboard();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        // app.UseSwagger();
+        // app.UseSwaggerUI();
+        app.UseOpenApi(c => c.Path = "/openapi/{documentName}.json");
+        app.MapScalarApiReference();
+        app.UseSwaggerGen();
+    }
 
     await app.RunAsync();
 }

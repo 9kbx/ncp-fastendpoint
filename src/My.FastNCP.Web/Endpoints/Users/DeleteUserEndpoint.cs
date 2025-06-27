@@ -9,6 +9,7 @@ sealed class DeleteUserEndpoint : Endpoint<DeleteUserRequest, ResponseData>
     public override void Configure()
     {
         Delete("/api/user/{userId}/delete");
+        Description(x => x.WithTags("User")); // 路由分组
         Permissions("user.delete");
     }
 

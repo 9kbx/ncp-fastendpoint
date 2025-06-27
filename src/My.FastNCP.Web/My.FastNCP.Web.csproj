@@ -9,12 +9,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FastEndpoints.Generator" Version="6.2.0" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="FastEndpoints" Version="6.2.0" />
     <PackageReference Include="FastEndpoints.Security" Version="6.2.0" />
     <PackageReference Include="AspNet.Security.OAuth.Feishu" Version="9.0.0" />
     <PackageReference Include="AspNet.Security.OAuth.Weixin" Version="9.0.0" />
     <PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.3.2" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="8.3.2" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="6.2.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.17" />
     <PackageReference Include="Hangfire.Redis.StackExchange" Version="1.9.4" />
@@ -44,6 +46,7 @@
     <PackageReference Include="prometheus-net.AspNetCore.HealthChecks" Version="8.2.1" />
     <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
     <PackageReference Include="Refit.Newtonsoft.Json" Version="8.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.5.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
