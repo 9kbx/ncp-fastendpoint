@@ -1,11 +1,13 @@
 using FastEndpoints;
+using My.FastNCP.Web.Application.Commands;
 using NetCorePal.Extensions.Dto;
 
 namespace My.FastNCP.Web.Endpoints.Users;
 
 public record CreateUserRequest(string Username, string Password);
 
-public class CreateUserEndpoint : Endpoint<CreateUserRequest, ResponseData<long>>
+public class CreateUserEndpoint(IMediator mediator)
+    : Endpoint<CreateUserRequest, ResponseData<CreateUserCommandResponse>>
 {
     public override void Configure()
     {
@@ -15,7 +17,8 @@ public class CreateUserEndpoint : Endpoint<CreateUserRequest, ResponseData<long>
 
     public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
     {
-        var createdId = Random.Shared.NextInt64(10000000, 99999999);
-        await SendOkAsync(createdId.AsResponseData(), ct);
+        var cmd = new CreateUserCommand(req.Username, req.Password);
+        var res = await mediator.Send(cmd, ct);
+        await SendOkAsync(res.AsResponseData(), ct);
     }
 }
