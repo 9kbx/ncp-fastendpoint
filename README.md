@@ -42,7 +42,7 @@ builder.Services
 
 ### JWT令牌管理
 
-FastEndpoint 提供了令牌刷新和令牌吊销验证抽象，详情代码查看：
+FastEndpoint 提供了令牌刷新和令牌吊销验证抽象
 
 - [令牌刷新](https://fast-endpoints.com/docs/security#jwt-refresh-tokens)
 - [令牌有效性验证](https://fast-endpoints.com/docs/security#jwt-token-revocation)
