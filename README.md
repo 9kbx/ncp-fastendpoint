@@ -155,3 +155,7 @@ sealed class CreateUserSummary : Summary<CreateUserEndpoint, CreateUserRequest>
 在 Scalar UI 上展示样例
 
 ![创建用户](assets/scalar-ui-create-user.jpg)
+
+### 其他快捷指令
+
+![其他快捷指令](https://raw.githubusercontent.com/netcorepal/netcorepal-cloud-template/refs/heads/main/docs/snippets.gif)
