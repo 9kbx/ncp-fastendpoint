@@ -8,7 +8,6 @@ using Microsoft.Extensions.Primitives;
 
 namespace My.FastNCP.Web.AspNetCore.ApiKey;
 
-
 sealed class ApikeyAuth(
     IOptionsMonitor<AuthenticationSchemeOptions> options,
     ILoggerFactory logger,
@@ -24,8 +23,13 @@ sealed class ApikeyAuth(
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
+        // 从请求头获取apikey
         Request.Headers.TryGetValue(HeaderName, out var extractedApiKey);
-        
+        // 若请求头不存在则从查询参数获取
+        if (string.IsNullOrWhiteSpace(extractedApiKey))
+            Request.Query.TryGetValue(ApikeyAuth.HeaderName, out extractedApiKey);
+
+
         // 通过apikey初始化当前用户
         var user = await InitLoginUser(extractedApiKey);
 

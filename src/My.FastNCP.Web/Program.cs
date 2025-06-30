@@ -98,6 +98,14 @@ try
         {
             o.ForwardDefaultSelector = ctx =>
             {
+                if ((ctx.Request.Headers.TryGetValue(ApikeyAuth.HeaderName, out var apikeyHeader) &&
+                     !string.IsNullOrWhiteSpace(apikeyHeader)) ||
+                    (ctx.Request.Query.TryGetValue(ApikeyAuth.HeaderName, out apikeyHeader) &&
+                     !string.IsNullOrWhiteSpace(apikeyHeader)))
+                {
+                    return ApikeyAuth.SchemeName;
+                }
+
                 if (ctx.Request.Headers.TryGetValue(HeaderNames.Authorization, out var authHeader) &&
                     authHeader.FirstOrDefault()?.StartsWith("Bearer ") is true)
                 {
