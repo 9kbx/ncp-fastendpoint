@@ -92,7 +92,7 @@ sealed class UserPermissionHydrator(UserPermissionService userPermissionService)
 }
 ```
 
-## 快捷命令
+## 代码片段快捷指令
 
 + 创建Endpoint：`epp`
 
@@ -152,10 +152,58 @@ sealed class CreateUserSummary : Summary<CreateUserEndpoint, CreateUserRequest>
 }
 ```
 
-在 Scalar UI 上展示样例
+在 Scalar UI 上展示接口样例
 
 ![创建用户](assets/scalar-ui-create-user.jpg)
 
-### 其他快捷指令
+### IDE 代码片段配置
 
-![其他快捷指令](https://raw.githubusercontent.com/netcorepal/netcorepal-cloud-template/refs/heads/main/docs/snippets.gif)
+- Rider默认支持，无需配置
+- VS和VSCode参考: https://github.com/netcorepal/netcorepal-cloud-template/blob/main/README.md
+
+### 可用的代码片段
+
+#### NetCorePal (ncp) 快捷键
+
+| 快捷键 | 描述            | 生成内容 |
+|--------|---------------|----------|
+| `ncpcmd` | NetCorePal 命令 | ICommand 实现(含验证器和处理器) |
+| `ncpcmdres` | 命令(含返回值)      | ICommand&lt;Response&gt; 实现 |
+| `ncpar` | 聚合根           | Entity&lt;Id&gt; 和 IAggregateRoot |
+| `ncprepo` | NetCorePal 仓储 | IRepository 接口和实现 |
+| `ncpde` | 领域事件          | IDomainEvent 记录 |
+| `ncpdeh` | 领域事件处理器       | IDomainEventHandler 实现 |
+| `ncpie` | 集成事件          | IntegrationEvent 和处理器 |
+| `ncpiec` | 集成事件转换器       | IIntegrationEventConverter |
+
+#### Fast-Endpoints (ep) 快捷键
+
+| 快捷键 | 描述 | 生成内容 |
+|--------|------|----------|
+| `epp` | FastEndpoint(NCP风格) | 完整的垂直切片实现 |
+| `epreq` | 仅请求端点 | Endpoint&lt;Request&gt; |
+| `epres` | 仅响应端点 | EndpointWithoutRequest&lt;Response&gt; |
+| `epdto` | 端点 DTOs | Request 和 Response 类 |
+| `epval` | 端点验证器 | Validator&lt;Request&gt; |
+| `epmap` | 端点映射器 | Mapper&lt;Request, Response, Entity&gt; |
+| `epfull` | 完整端点切片 | 带映射器的完整实现 |
+| `epsum` | 端点摘要 | Summary&lt;Endpoint, Request&gt; |
+| `epnoreq` | 无请求端点 | EndpointWithoutRequest |
+| `epreqres` | 请求响应端点 | Endpoint&lt;Request, Response&gt; |
+| `epdat` | 端点数据 | 静态数据类 |
+
+### 使用示例
+
+#### 创建命令文件
+
+- 在命令文件夹下创建 `CreateUserCommand.cs` 文件
+- 在代码里输入 `ncpcmd` 生成命令和命令处理器相关代码
+
+#### 创建webapi接口
+
+- 在Endpoints文件夹下创建 `CreateUserEndpiont.cs` 文件
+- 在代码里输入 `epp` 生成创建用户webapi接口的相关代码
+
+#### 示例截图
+
+![示例截图](https://raw.githubusercontent.com/netcorepal/netcorepal-cloud-template/refs/heads/main/docs/snippets.gif)
