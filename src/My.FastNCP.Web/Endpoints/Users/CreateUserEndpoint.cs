@@ -26,6 +26,8 @@ sealed class CreateUserEndpoint(IMediator mediator) : Endpoint<CreateUserRequest
         var res = new CreateUserResponse(result.UserId, result.UserName);
         await SendOkAsync(res.AsResponseData(), c);
         
+        // var payload = new UserInfoRequest(result.UserId);
+        // await SendCreatedAtAsync<UserInfoEndpoint>(payload, cancellation: c);
     }
 }
 
