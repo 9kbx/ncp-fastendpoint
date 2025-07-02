@@ -82,8 +82,8 @@ sealed class ApikeyAuth(
                     new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Role, "admin"), // 登录访客（临时代码）
-                    new Claim("permission", "pms1"),
-                    new Claim("permission", "pms2")
+                    new Claim("permissions", "pms1"),
+                    new Claim("permissions", "pms2")
                     // ...
                 ],
                 authenticationType: Scheme.Name);
